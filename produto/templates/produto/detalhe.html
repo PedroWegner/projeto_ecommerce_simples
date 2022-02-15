@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load filters %}
+
+{% block 'conteudo' %}
+
+<h1>{{produto.nome}} ({{ produto.nome_cientifico }})</h1>
+
+{% if produto.imagem %}
+
+<img src="{{ produto.imagem.url }}" alt="">
+
+{% endif %}
+
+<p>{{ produto.descricao_curta }}</p>
+<p>{{ produto.descricao_longa|linebreaks }}</p>
+<p>{{ produto.preco|forma_preco }}</p>
+
+{% endblock %}

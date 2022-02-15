@@ -46,7 +46,9 @@ class Produto(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            slug = f'{slugify(self.nome)}-{self.pk}-{slugify(self.nome_cientifico)}'
+            # TESTAR ESSA PK E ID
+            ide = self.pk or self.id
+            slug = f'{slugify(self.nome)}-{self.ide}-{slugify(self.nome_cientifico)}'
             self.slug = slug
 
         super().save(*args, **kwargs)

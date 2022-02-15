@@ -9,7 +9,9 @@
     <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
     {% endif %}
 
-    <h2>{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
+    <a href="{{ produto.slug }}">
+        <h2>{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
+    </a>
     <span>{{ produto.preco|forma_preco }}</span>
 
     {% endfor %}
