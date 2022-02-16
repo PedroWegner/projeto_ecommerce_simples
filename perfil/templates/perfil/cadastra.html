@@ -3,11 +3,19 @@
 
 {% block 'conteudo' %}
 
-<h1>Cadastrar</h1>
+<h1 class="control-label">Cadastrar</h1>
 
 <form method="POST">
-    {% crsf_token %}
-    {{ userform.crispy }}
+    {% csrf_token %}
+
+    {{ userform|crispy }}
+
+
+    <button type="submit">
+        Enviar
+    </button>
+
+
 </form>
 
-{% block %}
+{% endblock %}

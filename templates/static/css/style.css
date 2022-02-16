@@ -1,0 +1,17 @@
+.teste {
+    font-size: 20px;
+    color: purple;
+}
+
+.img_lista {
+    width: 200px;
+}
+
+.preto input {
+    color: yellow;
+    border-radius: 4px 3px 6px / 2px 4px;
+}
+
+.amarelo label {
+    color: yellow;
+}
