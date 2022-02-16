@@ -3,7 +3,7 @@
 
 {% block 'conteudo' %}
 
-<h1>{{produto.nome}} ({{ produto.nome_cientifico }})</h1>
+<h1 class='teste'>{{produto.nome}} ({{ produto.nome_cientifico }})</h1>
 
 {% if produto.imagem %}
 
@@ -14,5 +14,11 @@
 <p>{{ produto.descricao_curta }}</p>
 <p>{{ produto.descricao_longa|linebreaks }}</p>
 <p>{{ produto.preco|forma_preco }}</p>
+{% if produto.estoque < 1 %}
+<p>Produto indisponível</p>
+{% else %}
+<p>Estoque: {{ produto.estoque }}</p>
+{% endif %}
+
 
 {% endblock %}

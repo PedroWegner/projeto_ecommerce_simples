@@ -6,13 +6,13 @@
     {% for produto in produtos %}
 
     {% if produto.imagem %}
-    <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+    <img class='img_lista' src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
     {% endif %}
 
     <a href="{{ produto.slug }}">
-        <h2>{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
+        <h2 >{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
     </a>
-    <span>{{ produto.preco|forma_preco }}</span>
+    <span class='teste'>{{ produto.preco|forma_preco }}</span>
 
     {% endfor %}
 

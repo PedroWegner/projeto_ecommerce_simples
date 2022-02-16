@@ -18,6 +18,7 @@ class Produto(models.Model):
         upload_to='imagens/%Y/%m', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     preco = models.FloatField()
+    estoque = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
         return self.nome
