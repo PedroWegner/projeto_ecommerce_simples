@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views import View
 from django.contrib.auth.models import User
@@ -31,33 +31,27 @@ class CadastraPerfil(View):
             self.request, self.template_name, self.contexto
         )
 
-    def get(self, *args, **kwargs):
-        return self.renderizar
-
     def post(self, *args, **kwargs):
-        if not self.perfilforms.is_valid() or not self.enderecoforms.is_valid() or not self.userform.is_valid():
+        # indica que há algum erro num dos formularios
+        if not self.userform.is_valid() or not self.enderecoforms.is_valid():
             return self.renderizar
 
-        username = self.userform.cleaned_data.get('username')
-        password = self.userform.cleaned_data.get('password')
-        email = self.userform.cleaned_data.get('email')
-        first_name = self.userform.cleaned_data.get('first_name')
-        last_name = self.userform.cleaned_data.get('last_name')
+        senha = self.userform.cleaned_data.get('senha')
 
         # registra um usuario
         usuario = self.userform.save(commit=False)
-        usuario.set_password(password)
+        usuario.set_password(senha)
         usuario.save()
 
-        # registra um endereco para o usuario
-        #endereco = self.enderecoforms.save(commit=False)
-        # endereco.save()
+        # registra um endereco
+        endereco = self.enderecoforms.save(commit=False)
+        endereco.save()
 
-        # regista um perfil para o usuario
-        #perfil = self.perfilforms.save(commit=False)
-        #perfil.usuario = usuario
-        #perfil.endereco = endereco
-        # perfil.save()
+        # registra um perfil
+        perfil = self.perfilforms.save(commit=False)
+        perfil.usuario = usuario
+        perfil.endereco = endereco
+        perfil.save()
 
         self.request.session.save()
         return self.renderizar

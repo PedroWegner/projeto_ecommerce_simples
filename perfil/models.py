@@ -45,6 +45,9 @@ class Endereco(models.Model):
         )
     )
 
+    def __str__(self):
+        return f'{self.rua}, {self.numero} - {self.bairro}'
+
     def clean(self):
 
         if re.search(r'[^0-9]', self.cep) or len(self.cep) < 8:
