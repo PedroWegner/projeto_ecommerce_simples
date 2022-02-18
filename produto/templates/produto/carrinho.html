@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load filters %}
+{% load static %}
+{% block 'conteudo' %}
+
+<div>
+    <table>
+        <tr>
+            <th>
+                Produto
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Quantidade
+            </th>
+            <th>
+                Preço
+            </th>
+        </tr>
+        {% for linha in carrinho.values %}
+        <tr>
+            <td>
+                <img class="img" src="{% get_media_prefix %}{{ linha.imagem_produto }}">
+            </td>
+            <td>
+                <a href="{% url 'produto:detalhe_produto' linha.slug_produto %}">
+                    {{ linha.nome_produto }}
+                </a>
+                <a href="{% url 'produto:remove_carrinho' %}?id={{ linha.id_produto }}"> remover item</a>
+            </td>
+            <td>
+                {{ linha.quantidade }}
+            </td>
+            <td>
+                {{ linha.preco_produto }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div>
+    <p>Valor total: {{ carrinho|compra_total|forma_preco }}</p>
+</div>
+
+{% endblock %}

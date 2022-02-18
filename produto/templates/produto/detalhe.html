@@ -7,7 +7,7 @@
 
 {% if produto.imagem %}
 
-<img src="{{ produto.imagem.url }}" alt="">
+<img class='img' src="{{ produto.imagem.url }}" alt="">
 
 {% endif %}
 
@@ -19,5 +19,14 @@
     <p>Estoque: {{ produto.estoque }}</p>
     {% endif %}
 
-
+    <form action="{% url 'produto:add_carrinho' %}">
+        <select name="id">
+            <option value="{{ produto.id }}">
+                {{ produto.nome }}
+            </option>
+        </select>
+        <button type="submit">
+            Adicionar ao carrinho
+        </button>
+    </form>
     {% endblock %}

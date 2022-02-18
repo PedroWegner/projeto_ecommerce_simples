@@ -4,3 +4,11 @@ def forma_preco(float):
     real
     """
     return f'R$ {float:.2f}'.replace('.', ',')
+
+
+def quantidade_total(carrinho):
+    return sum([valor['quantidade'] for valor in carrinho.values()])
+
+
+def compra_total(carrinho):
+    return sum([item.get('preco_produto') for item in carrinho.values()])

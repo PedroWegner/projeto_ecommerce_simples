@@ -1,4 +1,5 @@
 {% load static %}
+{% load filters %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +9,16 @@
     <title>E-Commerce</title>
 </head>
 <body>
-    <p class='teste'>OI/p>
+    <a href="{% url 'produto:lista_produtos' %}" class="teste">OI</a>
+    {% if request.session.carrinho %}
+    
+    <a href="{% url 'produto:carrinho' %}"> 
+        CARRINHO
+        <span>
+            {{ request.session.carrinho|quantidade_total }}
+        </span>
+    </a>
+    {% endif %}
     {% block 'conteudo' %}
     {% endblock %}
 </body>

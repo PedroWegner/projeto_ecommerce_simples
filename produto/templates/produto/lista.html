@@ -3,17 +3,17 @@
 
 {% block 'conteudo' %}
 
-    {% for produto in produtos %}
+{% for produto in produtos %}
 
-    {% if produto.imagem %}
-    <img class='img_lista' src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
-    {% endif %}
+{% if produto.imagem %}
+<img class='img' src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+{% endif %}
 
-    <a href="{{ produto.slug }}">
-        <h2 >{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
-    </a>
-    <span class='teste'>{{ produto.preco|forma_preco }}</span>
+<a href="{{ produto.slug }}">
+    <h2>{{ produto.nome}} ({{ produto.nome_cientifico }})</h2>
+</a>
+<span class='teste'>{{ produto.preco|forma_preco }}</span>
 
-    {% endfor %}
+{% endfor %}
 
 {% endblock %}

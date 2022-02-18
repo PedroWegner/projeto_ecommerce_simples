@@ -33,7 +33,7 @@ class CadastraPerfil(View):
 
     def post(self, *args, **kwargs):
         # indica que há algum erro num dos formularios
-        if not self.userform.is_valid() or not self.enderecoforms.is_valid():
+        if not self.userform.is_valid() or not self.enderecoforms.is_valid() or not self.perfilforms.is_valid():
             return self.renderizar
 
         senha = self.userform.cleaned_data.get('senha')
