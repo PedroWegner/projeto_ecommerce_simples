@@ -19,6 +19,20 @@
         </span>
     </a>
     {% endif %}
+
+
+    {% if request.user.is_authenticated %}
+    <div>
+        <a href="{% url 'perfil:logout' %}">Logout</a>
+    </div>
+    {% else %}
+    <div>
+        <a href="{% url 'perfil:cadastrar' %}">CADASTRAR</a>
+        <a href="{% url 'perfil:login' %}">LOGIN</a>
+    </div>
+    {% endif %}
+    
+    
     {% block 'conteudo' %}
     {% endblock %}
 </body>

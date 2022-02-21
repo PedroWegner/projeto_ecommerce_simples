@@ -1,8 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+import copy
+from django.http import HttpResponse
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views import View
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 from . import forms
+from django.contrib import messages
 
 
 class CadastraPerfil(View):
@@ -31,6 +35,9 @@ class CadastraPerfil(View):
             self.request, self.template_name, self.contexto
         )
 
+    def get(self, *args, **kwargs):
+        return self.renderizar
+
     def post(self, *args, **kwargs):
         # indica que há algum erro num dos formularios
         if not self.userform.is_valid() or not self.enderecoforms.is_valid() or not self.perfilforms.is_valid():
@@ -55,3 +62,33 @@ class CadastraPerfil(View):
 
         self.request.session.save()
         return self.renderizar
+
+
+class Login(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'perfil/login.html')
+
+    def post(self, *args, **kwargs):
+        usuario = self.request.POST.get('usuario')
+        senha = self.request.POST.get('senha')
+
+        if not usuario or not senha:
+            messages.error(
+                self.request,
+                'Usuario ou senha inválidos'
+            )
+
+        usuario = authenticate(self.request, username=usuario, password=senha)
+
+        if usuario:
+            login(self.request, user=usuario)
+
+        return redirect('produto:carrinho')
+
+
+class Logout(View):
+    def get(self, *args, **kwargs):
+        carrinho = copy.deepcopy(self.request.session.get('carrinho'))
+        logout(self.request)
+        self.request.session['carrinho'] = carrinho
+        return redirect('produto:lista_produtos')

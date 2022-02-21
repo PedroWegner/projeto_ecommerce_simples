@@ -3,6 +3,8 @@
 {% load static %}
 {% block 'conteudo' %}
 
+
+{% if request.session.carrinho %}
 <div>
     <table>
         <tr>
@@ -44,5 +46,7 @@
 <div>
     <p>Valor total: {{ carrinho|compra_total|forma_preco }}</p>
 </div>
-
+{% else %}
+<p>Não há nada no carrinho</p>
+{% endif %}
 {% endblock %}

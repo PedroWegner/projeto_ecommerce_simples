@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block 'conteudo' %}
+
+<h1 class="control-label">LOGIN</h1>
+
+{% if not request.user.is_authenticated %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="InputUsuario">Usuário</label>
+        <input id="InputUsuario" type="text" name="usuario">
+        <label for="InputSenha">Senha</label>
+        <input type="password" name="senha" id="InputSenha">
+        <button type="submit">
+            Enviar
+        </button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

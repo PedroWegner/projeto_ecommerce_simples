@@ -2,21 +2,19 @@
 {% load crispy_forms_tags %}
 
 {% block 'conteudo' %}
-
 <h1 class="control-label">Cadastrar</h1>
 
-<form method="POST">
-    {% csrf_token %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
 
-    {{ userform|crispy }}
-    {{ enderecoforms|crispy }}
-    {{ perfilforms|crispy }}
+        {{ userform|crispy }}
+        {{ enderecoforms|crispy }}
+        {{ perfilforms|crispy }}
 
-    <button type="submit">
-        Enviar
-    </button>
-
-
-</form>
-
+        <button type="submit">
+            Enviar
+        </button>
+    </form>
+</div>
 {% endblock %}
