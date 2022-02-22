@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load filters %}
+{% load static %}
+
+{% block 'conteudo' %}
+<div>
+    <h2>Pedido {{ pedido }} </h2>
+    <dl>
+        <dt>Numero do pedido</dt>
+        <dd>{{ pedido.id }}</dd>
+        <dt>Total a pagar</dt>
+        <dd>{{ pedido.total|forma_preco }}</dd>
+        <dt>Quantidade de produtos</dt>
+        <dd>{{ pedido.quantidade_total }}</dd>
+        <dt>Status</dt>
+        <dd>{{ pedido.get_status_display }}</dd>
+    </dl>
+    <table>
+        <tr>
+            <th>Produto</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+        {% for linha in pedido.itempedido_set.all %}
+        <tr>
+            <td>
+                <img src="{% get_media_prefix %}{{ linha.imagem }}" alt="">
+            </td>
+            <td>{{ linha.produto }}</td>
+            <td>{{ linha.quantidade }}</td>
+            <td>{{ linha.preco|forma_preco }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+        <a href="#">Pagar</a>
+    </div>
+</div>
+{% endblock %}

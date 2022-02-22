@@ -46,6 +46,11 @@
 <div>
     <p>Valor total: {{ carrinho|compra_total|forma_preco }}</p>
 </div>
+
+<div>
+    <a href="{% url 'produto:resumo_da_compra' %}">Cotinuar compra</a>
+</div>
+
 {% else %}
 <p>Não há nada no carrinho</p>
 {% endif %}

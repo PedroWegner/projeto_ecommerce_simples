@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load filters %}
+{% load static %}
+{% block 'conteudo' %}
+
+<div>
+    <h2>Seus dados</h2>
+    <dl>
+        <dt>Nome</dt>
+        <dd>{{ usuario.first_name }}</dd>
+        <dt>Sobrenome</dt>
+        <dd>{{ usuario.last_name }}</dd>
+        <dt>Nascimento</dt>
+        <dd>{{ usuario.perfil.data_nascimento }}</dd>
+        <dt>CPF</dt>
+        <dd>{{ usuario.perfil.cpf }}</dd>
+        <dt>Email</dt>
+        <dd>{{ usuario.email }}</dd>
+    </dl>
+    <h2>Seu endereço</h2>
+    <dl>
+        <dt>Rua</dt>
+        <dd>{{ usuario.perfil.endereco.rua }}</dd>
+        <dt>Numero</dt>
+        <dd>{{ usuario.perfil.endereco.numero }}</dd>
+        <dt>Complemento</dt>
+        <dd>{{ usuario.perfil.endereco.complemento }}</dd>
+        <dt>Bairro</dt>
+        <dd>{{ usuario.perfil.endereco.bairro }}</dd>
+        <dt>Cidade</dt>
+        <dd>{{ usuario.perfil.endereco.cidade }}</dd>
+        <dt>Bairro</dt>
+        <dd>{{ usuario.perfil.endereco.bairro }}</dd>
+        <dt>CEP</dt>
+        <dd>{{ usuario.perfil.endereco.cep }}</dd>
+    </dl>
+</div>
+
+<div>
+    <a href="{% url 'pedido:salvar_pedido' %}">Realizar o pedido</a>
+</div>
+{% endblock %}
