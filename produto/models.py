@@ -15,7 +15,7 @@ class Produto(models.Model):
     descricao_curta = models.TextField(max_length=250)
     descricao_longa = models.TextField()
     imagem = models.ImageField(
-        upload_to='imagens/%Y/%m', blank=True, null=True)
+        upload_to='imagens/%Y/%m')
     slug = models.SlugField(unique=True, blank=True, null=True)
     preco = models.FloatField()
     estoque = models.PositiveBigIntegerField(default=0)
