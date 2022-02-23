@@ -49,7 +49,7 @@ class PublicaPost(View):
         post.save()
 
         self.request.session.save()
-        return self.renderizar
+        return redirect('blog:blog')
 
 
 class PostDetalhe(View):

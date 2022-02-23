@@ -7,6 +7,7 @@ from django.views import View
 from django.contrib import messages
 from . import models
 from perfil.models import Perfil
+from .forms import ProdutoCadastroForms
 
 
 class ListaProdutos(ListView):
@@ -168,3 +169,37 @@ class ResumoDaCompra(View):
         }
 
         return render(self.request, 'produto/resumodacompra.html', contexto)
+
+
+class CadastroProduto(View):
+    template_name = 'produto/cadastroproduto.html.'
+
+    def setup(self, *args, **kwargs):
+        super().setup(*args, **kwargs)
+
+        self.contexto = {
+            'cadatrarprodutoforms': ProdutoCadastroForms(
+                data=self.request.POST or None,
+            )
+        }
+
+        self.cadastraproduto = self.contexto['cadatrarprodutoforms']
+
+        self.renderizar = render(
+            self.request, self.template_name, self.contexto
+        )
+
+    def get(self, *args, **kwargs):
+        if not self.request.user.is_staff:
+            return redirect('produto:lista_produtos')
+
+        return self.renderizar
+
+    def post(self, *args, **kwargs):
+        if not self.cadastraproduto.is_valid():
+            return self.renderizar
+
+        self.cadastraproduto.save()
+        self.request.session.save()
+
+        return redirect('produto:lista_produtos')

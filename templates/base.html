@@ -34,6 +34,7 @@
     
     {% if request.user.is_staff%}
         <a href="{% url 'blog:publicar' %}">Publicar</a>
+        <a href="{% url 'produto:cadastro_produto' %}">Cadastrar um produto</a>
     {% else %}
 
     {% endif %}
