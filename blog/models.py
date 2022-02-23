@@ -18,7 +18,8 @@ class Post(models.Model):
     autor_post = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     conteudo_post = models.TextField(verbose_name='Conteúdo')
     data_post = models.DateField(default=timezone.now)
-    imagem_post = models.ImageField(upload_to='imagens_blog/%Y/%m')
+    imagem_post = models.ImageField(
+        upload_to='imagens_blog/%Y/%m', null=True, blank=True)
     publicado = models.BooleanField(default=False, verbose_name="Visibildiade")
 
     def __str__(self):

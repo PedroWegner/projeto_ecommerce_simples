@@ -32,6 +32,14 @@
     </div>
     {% endif %}
     
+    {% if request.user.is_staff%}
+        <a href="{% url 'blog:publicar' %}">Publicar</a>
+    {% else %}
+
+    {% endif %}
+    <a href="{% url 'blog:blog' %}">Blog</a>
+
+
     
     {% block 'conteudo' %}
     {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+{% for post in posts %}
+
+<div>
+    <a href="post/{{ post.id }}">Titulo: {{ post.titulo_post }}</a>
+
+    {% if post.imagem_post %}
+    <img src="" alt="">
+    {% else %}
+    <h1>SEM IMAGEM</h1>
+    {% endif %}
+
+    <p>Autor: {{ post.autor_post.first_name }} {{ post.autor_post.last_name }}</p>
+    <span>{{ post.data_post }}</span>
+</div>
+
+{% endfor %}
+
+{% endblock %}

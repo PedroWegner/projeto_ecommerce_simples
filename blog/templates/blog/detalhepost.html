@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block 'conteudo' %}
+
+{% if post %}
+<p>{{ post }}</p>
+{% else %}
+<p>não há post</p>
+{% endif %}
+
+{{ post.conteudo_post }}
+
+
+<div>
+    <h1>Deixe um comentário</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ comentarioforms|crispy }}
+
+        <button type="submit"> enviar </button>
+    </form>
+
+</div>
+{% endblock %}
