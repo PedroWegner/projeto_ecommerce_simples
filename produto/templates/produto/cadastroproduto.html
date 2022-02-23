@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 
 {% block 'conteudo' %}
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
 
 
-    {{ cadatrarprodutoforms|crispy}}
+    {{ cadatrarprodutoforms}}
 
     <button type="submit">
         Publiar

@@ -24,6 +24,7 @@ class PublicaPost(View):
         self.contexto = {
             'postforms': PostForms(
                 data=self.request.POST or None,
+                files=self.request.FILES or None,
             ),
         }
 

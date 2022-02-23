@@ -1,3 +1,4 @@
+from email.mime import image
 import imp
 from django import http
 from django.shortcuts import render, redirect, get_object_or_404, reverse
@@ -180,6 +181,7 @@ class CadastroProduto(View):
         self.contexto = {
             'cadatrarprodutoforms': ProdutoCadastroForms(
                 data=self.request.POST or None,
+                files=self.request.FILES or None,
             )
         }
 

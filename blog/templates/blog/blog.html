@@ -8,7 +8,7 @@
     <a href="post/{{ post.id }}">Titulo: {{ post.titulo_post }}</a>
 
     {% if post.imagem_post %}
-    <img src="" alt="">
+    <img src="{{ post.imagem_post.url }}" alt="">
     {% else %}
     <h1>SEM IMAGEM</h1>
     {% endif %}
